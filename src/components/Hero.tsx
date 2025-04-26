@@ -20,7 +20,7 @@ const Hero = () => {
   };
   
   return (
-    <section id="home" className="relative min-h-[100svh] flex items-center pt-24 pb-12 px-4 sm:px-6 sm:pt-16">
+    <section id="home" className="relative min-h-[100svh] flex items-center pt-24 pb-12 px-4 sm:px-6 sm:pt-16 overflow-hidden">
       {/* Gradient background */}
       <div className="absolute inset-0 bg-gradient-to-b from-dark-300 via-dark-200 to-dark-100 opacity-70"></div>
       
