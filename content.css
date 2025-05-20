@@ -1,0 +1,228 @@
+/* Base styles */
+:root {
+  --eye-break-primary: #3B82F6;
+  --eye-break-primary-light: #60A5FA;
+  --eye-break-secondary: #0D9488;
+  --eye-break-text-light: #F8FAFC;
+  --eye-break-text-dark: #1E293B;
+  --eye-break-background: rgba(255, 255, 255, 0.95);
+  --eye-break-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --eye-break-border-radius: 8px;
+}
+
+/* Timer container in bottom right */
+.eye-break-timer-container {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  z-index: 9999;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  font-size: 12px;
+  color: var(--eye-break-text-dark);
+  background: var(--eye-break-background);
+  box-shadow: var(--eye-break-shadow);
+  border-radius: 24px;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  transition: opacity 0.3s ease;
+}
+
+.eye-break-timer-display {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.eye-break-progress-circle {
+  width: 40px;
+  height: 40px;
+  transform: rotate(-90deg);
+  position: absolute;
+}
+
+.eye-break-progress-circle-bg {
+  fill: none;
+  stroke: #E2E8F0;
+  stroke-width: 3;
+}
+
+.eye-break-progress-circle-fg {
+  fill: none;
+  stroke: var(--eye-break-primary);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-dasharray: 100.53;  /* 2 * PI * 16 */
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 1s linear;
+}
+
+.eye-break-timer-text {
+  font-size: 10px;
+  font-weight: 600;
+  position: relative;
+  z-index: 2;
+}
+
+/* Blur overlay */
+.eye-break-blur-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(8px);
+  background-color: rgba(255, 255, 255, 0.3);
+  z-index: 10000;
+  animation: fadeIn 0.5s ease;
+}
+
+/* Break popup */
+.eye-break-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10001;
+  background-color: var(--eye-break-background);
+  box-shadow: var(--eye-break-shadow);
+  border-radius: var(--eye-break-border-radius);
+  padding: 24px;
+  text-align: center;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 300px;
+  animation: scaleIn 0.3s ease;
+}
+
+.eye-break-popup h2 {
+  color: var(--eye-break-primary);
+  font-size: 24px;
+  margin: 0 0 8px 0;
+  font-weight: 600;
+}
+
+.eye-break-popup p {
+  color: var(--eye-break-text-dark);
+  font-size: 16px;
+  margin: 0 0 24px 0;
+}
+
+.eye-break-popup-countdown {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.eye-break-countdown-circle {
+  width: 100px;
+  height: 100px;
+  transform: rotate(-90deg);
+  position: absolute;
+}
+
+.eye-break-countdown-circle-bg {
+  fill: none;
+  stroke: #E2E8F0;
+  stroke-width: 5;
+}
+
+.eye-break-countdown-circle-fg {
+  fill: none;
+  stroke: var(--eye-break-secondary);
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-dasharray: 282.74;  /* 2 * PI * 45 */
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 1s linear;
+}
+
+.eye-break-countdown-text {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--eye-break-secondary);
+  position: relative;
+  z-index: 2;
+}
+
+.eye-break-skip-button {
+  background-color: transparent;
+  border: 1px solid var(--eye-break-primary);
+  color: var(--eye-break-primary);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.eye-break-skip-button:hover {
+  background-color: var(--eye-break-primary);
+  color: white;
+}
+
+/* Warning popup */
+.eye-break-warning-popup {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10001;
+  background-color: var(--eye-break-background);
+  box-shadow: var(--eye-break-shadow);
+  border-radius: var(--eye-break-border-radius);
+  padding: 12px 24px;
+  text-align: center;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  font-size: 16px;
+  color: var(--eye-break-text-dark);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: slideDown 0.3s ease;
+}
+
+.eye-break-warning-countdown {
+  font-weight: 700;
+  color: var(--eye-break-primary);
+  font-size: 20px;
+  margin-left: 4px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from { 
+    opacity: 0; 
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+  to { 
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
